@@ -1,10 +1,8 @@
 import discord, os
 from discord.ext import commands, tasks
-
-
+from re import search
 
 client = commands.Bot(command_prefix = "!", intents=discord.Intents.all())
-
     
 @client.command()
 async def reload(ctx, extension):
@@ -22,10 +20,8 @@ async def reload(ctx, extension):
         except:
             await ctx.send('Error occured reloading extension')       
 
-
-
 for filename in os.listdir('./cogs'):
-    if filename.endswith(".py"):
+    if filename.endswith(".py") and not search('data', filename):
         client.load_extension(f'cogs.{filename[:-3]}')
         print(f"Loading: {filename}")
 

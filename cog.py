@@ -8,7 +8,7 @@ client = commands.Bot(command_prefix = "a!", intents=discord.Intents.all())
 async def reload(ctx, extension):
     if str(extension) == 'all':
         for filename in os.listdir('./cogs'):
-            if filename.endswith(".py"):
+            if filename.endswith(".py") and not search('data', filename):
                 client.reload_extension(f'cogs.{filename[:-3]}')
                 await ctx.send(f"Loading: {filename}")
                 await ctx.send(f"Finished loading: {filename}")

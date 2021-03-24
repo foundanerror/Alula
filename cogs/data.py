@@ -1,13 +1,9 @@
-
+import asyncio,aiohttp
 
 help_commands = {"fun","moderation"}
 
-fun = [
-    ("!slap","`!slap @user`")
-]
 
-
-
+api_link = "http://api.sasaki.me:4444/"
 thumbnail_image = 'https://cdn.discordapp.com/attachments/777647584746537003/823371836313829406/Alula.png'
 
 
@@ -19,19 +15,31 @@ help_descriptions = [
 
 command_info = {
     "fun":{
-        "!slap":{
-            "name":"slap",
-            "description":"`!slap @User`"},
+        "!alarm":{
+            "name":"alarm",
+            "description":"`!alarm`"},
+        "!amazing":{
+            "name":"AMAZING",
+            "description":"`!amazing description`"},
         "!ask":{
             "name":"ask",
-            "description":"`!ask @User description`"}
-    },
+            "description":"`!ask @User description`"},
+        "!baka":{
+            "name":"baka",
+            "description":"`!baka @User`"},
+        "!bite":{
+            "name":"bite",
+            "description":"`!bite @User`"},
+        },
     "moderation":{}
 }
 
-if "fun" in command_info:
-    print("ok")
+
 
     
-
+async def request_api(cmdname):
+    async with aiohttp.ClientSession() as session:
+            async with session.get(f"http://api.sasaki.me:4444/{cmdname}") as response:
+                image = await response.text()
+                return image
 

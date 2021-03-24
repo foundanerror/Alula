@@ -2,7 +2,7 @@ import discord, os
 from discord.ext import commands, tasks
 from re import search
 
-client = commands.Bot(command_prefix = "a!", intents=discord.Intents.all())
+client = commands.Bot(command_prefix = "!", intents=discord.Intents.all())
     
 @client.command()
 async def reload(ctx, extension):
